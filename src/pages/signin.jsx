@@ -51,6 +51,7 @@ const FormContainer = styled(Box)({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
+  marginLeft: 0
 });
 
 const PrimaryBox = styled(Box)({
@@ -138,7 +139,7 @@ function SignIn() {
             <img
               src={Bg}
               alt="iPhone"
-              style={{ height: '100%', width: 'auto', objectFit: 'cover' }}
+              style={{ height: '100%', width: 'auto', objectFit: 'cover',marginRight:0 }}
             />
           </Box>
           
