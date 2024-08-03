@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
@@ -13,7 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root': {
@@ -41,7 +42,9 @@ const InstagramLogo = styled(Box)({
 });
 
 
+
 function Signup() {
+  
   const [form, setForm] = useState({
     email: '',
     fullName: '',
@@ -56,6 +59,10 @@ function Signup() {
     username: '',
     password: '',
   });
+
+  const handleSignup = () => {
+    navigate('/birthday');
+  };
 
   const handleChange = (prop) => (event) => {
     const value = event.target.value;
@@ -273,6 +280,7 @@ function Signup() {
           <Button
             variant="contained"
             color="primary"
+            onClick={handleSignup}
             sx={{
                 bgcolor: isFormValid() ? 'rgb(0, 149, 246)' : '#75b6ff',
                 color: 'white',
