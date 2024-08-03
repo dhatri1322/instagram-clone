@@ -97,7 +97,6 @@ function SignIn() {
     }
   }, [emailAddress, password]);
 
-  // Set iPhone image height based on form height
   useLayoutEffect(() => {
     if (formRef.current) {
       setFormHeight(formRef.current.offsetHeight);
@@ -124,7 +123,7 @@ function SignIn() {
           maxWidth={900}
           sx={{ flexDirection: { xs: 'column', sm: 'row' } }}
         >
-          {/* iPhone Image on the Left */}
+          
           <Box
             flex={1}
             display="flex"
@@ -132,7 +131,7 @@ function SignIn() {
             alignItems="center"
             sx={{
               display: { xs: 'none', sm: 'flex' },
-              height: `${formHeight}px`, // Set height based on form height
+              height: `${formHeight}px`, 
               width: 'auto',
             }}
           >

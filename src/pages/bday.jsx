@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Link, MenuItem, FormControl, Select, Stack } from '@mui/material';
 import styled from '@mui/material/styles/styled';
-import Footer from '../components/footer';
 import { grey } from '@mui/material/colors';
+import { useNavigate } from 'react-router-dom';
+import Footer from '../components/footer';
 
 // Styled components
+
 const InstagramLogo = styled(Box)({
   backgroundImage: 'url(/Assets/images/cupcake.png)',
   backgroundPosition: 'center',
   backgroundSize: '130px 84px',
-  width: '144px',  // Set to exact width of the logo
-  height: '96px',  // Set to exact height of the logo
+  width: '144px',
+  height: '96px',
   marginTop: '15px',
   backgroundRepeat: 'no-repeat',
   display: 'inline-block',
@@ -27,7 +29,7 @@ const FormContainer = styled(Box)({
   borderRadius: '2px',
   marginBottom: '12px',
   marginTop: 0,
-  minHeight: '350px',  // Increased height to accommodate the logo and form
+  minHeight: '350px',
 });
 
 const SecondaryBox = styled(Box)({
@@ -47,8 +49,10 @@ function Birthday() {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
+  const navigate = useNavigate(); 
 
   // Check if the form is valid
+
   useState(() => {
     if (day && month && year) {
       setIsFormValid(true);
@@ -56,6 +60,12 @@ function Birthday() {
       setIsFormValid(false);
     }
   }, [day, month, year]);
+
+  const handleNextClick = () => {
+    if (isFormValid) {
+      navigate('/home'); 
+    }
+  };
 
   return (
     <>
@@ -93,81 +103,77 @@ function Birthday() {
             This won't be a part of your public profile.
           </Typography>
           <Stack direction="row" spacing={0.6} mb={2} width="80%">
-  <FormControl sx={{ width: '111px' }}>
-    <Select
-      value={month}
-      onChange={(e) => setMonth(e.target.value)}
-      displayEmpty
-      sx={{ height: '36px' }}
-    >
-      <MenuItem value="" disabled>
-        <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-          March
-        </Typography>
-      </MenuItem>
-      {/* Add months */}
-      {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month, index) => (
-        <MenuItem key={index} value={month}>
-          <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-            {month}
-          </Typography>
-        </MenuItem>
-      ))}
-    </Select>
-  </FormControl>
-  <FormControl sx={{ width: '60px' }}>
-    <Select
-      value={day}
-      onChange={(e) => setDay(e.target.value)}
-      displayEmpty
-      sx={{ height: '36px' }}
-    >
-      <MenuItem value="" disabled>
-        <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-          10
-        </Typography>
-      </MenuItem>
-      {/* Add days */}
-      {[...Array(31).keys()].map((day) => (
-        <MenuItem key={day + 1} value={day + 1}>
-          <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-            {day + 1}
-          </Typography>
-        </MenuItem>
-      ))}
-    </Select>
-  </FormControl>
-  <FormControl sx={{ width: '80px' }}>
-    <Select
-      value={year}
-      onChange={(e) => setYear(e.target.value)}
-      displayEmpty
-      sx={{ height: '36px' }}
-    >
-      <MenuItem value="" disabled>
-        <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-          2022
-        </Typography>
-      </MenuItem>
-      {/* Add years */}
-      {[...Array(100).keys()].map((year) => (
-        <MenuItem key={year + 1920} value={year + 1920}>
-          <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-            {year + 1920}
-          </Typography>
-        </MenuItem>
-      ))}
-    </Select>
-  </FormControl>
-</Stack>
-
+            <FormControl sx={{ width: '111px' }}>
+              <Select
+                value={month}
+                onChange={(e) => setMonth(e.target.value)}
+                displayEmpty
+                sx={{ height: '36px' }}
+              >
+                <MenuItem value="" disabled>
+                  <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
+                    Month
+                  </Typography>
+                </MenuItem>
+                {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month, index) => (
+                  <MenuItem key={index} value={month}>
+                    <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
+                      {month}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl sx={{ width: '60px' }}>
+              <Select
+                value={day}
+                onChange={(e) => setDay(e.target.value)}
+                displayEmpty
+                sx={{ height: '36px' }}
+              >
+                <MenuItem value="" disabled>
+                  <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
+                    Day
+                  </Typography>
+                </MenuItem>
+                {[...Array(31).keys()].map((day) => (
+                  <MenuItem key={day + 1} value={day + 1}>
+                    <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
+                      {day + 1}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <FormControl sx={{ width: '80px' }}>
+              <Select
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+                displayEmpty
+                sx={{ height: '36px' }}
+              >
+                <MenuItem value="" disabled>
+                  <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
+                    Year
+                  </Typography>
+                </MenuItem>
+                {[...Array(100).keys()].map((year) => (
+                  <MenuItem key={year + 1920} value={year + 1920}>
+                    <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
+                      {year + 1920}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Stack>
           <Typography
             variant="body2"
             sx={{
               fontSize: '0.75rem',
               textAlign: 'center',
               mb: 2,
-              color: grey[600], // Use grey color from the palette
+              color: grey[600],
             }}
           >
             You need to enter the date you were born.
@@ -178,7 +184,7 @@ function Birthday() {
               fontSize: '0.75rem',
               textAlign: 'center',
               mb: 2,
-              color: grey[600], // Use grey color from the palette
+              color: grey[600],
             }}
           >
             Use your own birthday, even if this account is for a business, a pet, or something else.
@@ -197,6 +203,7 @@ function Birthday() {
               boxShadow: 'none',
             }}
             disabled={!isFormValid}
+            onClick={handleNextClick}
           >
             Next
           </Button>
@@ -204,7 +211,7 @@ function Birthday() {
             href="/signup"
             sx={{
               fontSize: '0.875rem',
-              color: grey[600], // Use grey color from the palette
+              color: grey[600],
               textAlign: 'center',
               display: 'block',
               mt: 1,

@@ -13,10 +13,10 @@ function Footer() {
     >
       <Box sx={{ bgcolor: 'white', width: '100%', py: 2 }}>
         <Stack
-           direction="row"
-           justifyContent="center"
-           alignItems="flex-start"
-           spacing={2}
+          direction={{ xs: 'column', sm: 'row' }} 
+          spacing={{ xs: 1, sm: 2 }} 
+          justifyContent="center"
+          alignItems="center"
         >
           <Typography variant="body2" sx={{ fontSize: '0.75rem' }}>Meta</Typography>
           <Typography variant="body2" sx={{ fontSize: '0.75rem' }}>About</Typography>
