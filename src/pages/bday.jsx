@@ -5,7 +5,6 @@ import { grey } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
 
-// Styled components
 const InstagramLogo = styled(Box)({
   backgroundImage: 'url(/Assets/images/cupcake.png)',
   backgroundPosition: 'center',

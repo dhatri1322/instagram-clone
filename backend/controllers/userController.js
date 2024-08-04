@@ -2,21 +2,19 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-// Sign up
+//-------------------------------------SIGN UP ROUTE-------------------------------------//
+
 exports.signup = async (req, res) => {
   try {
     const { email, mobileNumber, fullName, username, password } = req.body;
 
-    // Check if email or mobile number already exists
-    const existingUser = await User.findOne({ $or: [{ email }, { mobileNumber }] });
+    const existingUser = await User.findOne({ $or: [{ email }, { mobileNumber }] });      // CHECK FOR ALREADY REGISTERED USER
     if (existingUser) {
       return res.status(400).json({ message: 'User with this email or mobile number already exists.' });
     }
 
-    // Hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);       //HASING THE PASSWORD
 
-    // Create new user
     const newUser = new User({
       email,
       mobileNumber,
@@ -25,7 +23,6 @@ exports.signup = async (req, res) => {
       password: hashedPassword,
     });
 
-    // Save user to database
     await newUser.save();
 
     res.status(201).json({ message: 'User signed up successfully!' });
@@ -35,7 +32,8 @@ exports.signup = async (req, res) => {
   }
 };
 
-// Sign-In Route
+//-------------------------------------SIGN IN ROUTE-------------------------------------//
+
 exports.signin = async (req, res) => {
   const { email, password } = req.body;
 
@@ -62,7 +60,7 @@ exports.signin = async (req, res) => {
   }
 };
 
-// Get user by ID
+// -----------------------------Get user by ID------------------------------------
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
@@ -76,7 +74,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-// Update user's birthday
+//--------------------------------- Update user's birthday------------------------------------------
 exports.updateUserBirthday = async (req, res) => {
   try {
     const { birthday } = req.body;
@@ -90,7 +88,7 @@ exports.updateUserBirthday = async (req, res) => {
     }
     res.status(200).json({ message: 'Birthday updated successfully!' });
   } catch (error) {
-    console.error('Update user birthday error:', error); // Log the error
+    console.error('Update user birthday error:', error); 
     res.status(500).json({ message: error.message });
   }
 };

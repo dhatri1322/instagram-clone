@@ -6,7 +6,8 @@ import Footer from '../components/footer';
 import Bg from '../iphone_with_profile.png';
 import { useNavigate } from 'react-router-dom';
 import Home from '../pages/Home'
-// Instagram logo styling
+
+//--------------Instagram logo styling--------------------
 const InstagramLogo = styled(Box)({
   backgroundImage: 'url(/assets/images/insta.png)',
   backgroundPosition: '0px 0px',
@@ -18,7 +19,7 @@ const InstagramLogo = styled(Box)({
   display: 'inline-block',
 });
 
-// Background image styling
+//--------------Background image styling-------------------
 const BackgroundImage = styled(Box)({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
@@ -30,7 +31,7 @@ const BackgroundImage = styled(Box)({
   zIndex: -1,
 });
 
-// Styled text field for consistent styling
+//---------Styled text field for consistent stylin---------------
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root': {
     height: '2.5rem',
@@ -45,7 +46,7 @@ const StyledTextField = styled(TextField)(({ theme }) => ({
   marginBottom: '1rem',
 }));
 
-// Styled box for form container
+//-----------------Styled box for form container--------------------
 const FormContainer = styled(Box)({
   width: '310px',
   padding: '16px',
@@ -67,7 +68,7 @@ const PrimaryBox = styled(Box)({
     margin: 'auto',
 })
 
-// Styled box for secondary section
+//---------Styled box for secondary section----------------
 const SecondaryBox = styled(Box)({
   width: '310px',
   padding: '16px',
@@ -91,7 +92,7 @@ function SignIn() {
   const [formHeight, setFormHeight] = useState(0);
   const navigate = useNavigate();
 
-  // Validate form
+//----------------------CLIENT Validate form---------------------------
   useEffect(() => {
     if (emailAddress && password) {
       setIsFormValid(true);
@@ -216,6 +217,7 @@ function SignIn() {
                   type="submit"
                   variant="contained"
                   color="primary"
+                  onClick={handleSignIn}
                   sx={{
                     bgcolor: isFormValid ? 'rgb(0, 149, 246)' : '#75b6ff',
                     color: 'white',
