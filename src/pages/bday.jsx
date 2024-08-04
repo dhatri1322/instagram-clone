@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, Link, MenuItem, FormControl, Select, Stack } from '@mui/material';
 import styled from '@mui/material/styles/styled';
 import { grey } from '@mui/material/colors';
@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
 
 // Styled components
-
 const InstagramLogo = styled(Box)({
   backgroundImage: 'url(/Assets/images/cupcake.png)',
   backgroundPosition: 'center',
@@ -49,21 +48,15 @@ function Birthday() {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
   const [isFormValid, setIsFormValid] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
-  // Check if the form is valid
-
-  useState(() => {
-    if (day && month && year) {
-      setIsFormValid(true);
-    } else {
-      setIsFormValid(false);
-    }
+  useEffect(() => {
+    setIsFormValid(day && month && year);
   }, [day, month, year]);
 
   const handleNextClick = () => {
     if (isFormValid) {
-      navigate('/home'); 
+      navigate('/home');
     }
   };
 
@@ -112,7 +105,7 @@ function Birthday() {
               >
                 <MenuItem value="" disabled>
                   <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-                    Month
+                    March
                   </Typography>
                 </MenuItem>
                 {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'].map((month, index) => (
@@ -133,7 +126,7 @@ function Birthday() {
               >
                 <MenuItem value="" disabled>
                   <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-                    Day
+                    10
                   </Typography>
                 </MenuItem>
                 {[...Array(31).keys()].map((day) => (
@@ -154,10 +147,10 @@ function Birthday() {
               >
                 <MenuItem value="" disabled>
                   <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
-                    Year
+                    2022
                   </Typography>
                 </MenuItem>
-                {[...Array(100).keys()].map((year) => (
+                {[...Array(100).keys()].reverse().map((year) => (
                   <MenuItem key={year + 1920} value={year + 1920}>
                     <Typography variant="body2" sx={{ color: grey[500], fontSize: '0.75rem' }}>
                       {year + 1920}

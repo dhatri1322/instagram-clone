@@ -14,7 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled } from '@mui/material/styles';
-
+import axios from 'axios'; // Import Axios
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root': {
@@ -41,10 +41,7 @@ const InstagramLogo = styled(Box)({
   display: 'inline-block',
 });
 
-
-
 function Signup() {
-  
   const [form, setForm] = useState({
     email: '',
     fullName: '',
@@ -60,8 +57,28 @@ function Signup() {
     password: '',
   });
 
-  const handleSignup = () => {
-    navigate('/birthday');
+  const navigate = useNavigate(); // Only declare here
+
+  const handleSignup = async () => {
+    try {
+      await axios.post('http://localhost:8080/api/users/signup', form);
+      // Show success popup or message
+      alert('Account created successfully!');
+      navigate('/birthday'); // Navigate to the birthday page after successful signup
+    } catch (error) {
+      console.error('Signup error:', error);
+      if (error.response) {
+        if (error.response.status === 400) {
+          alert('User already exists. Please try logging in.');
+        } else {
+          alert(`Error: ${error.response.data.message || 'An error occurred. Please try again.'}`);
+        }
+      } else if (error.request) {
+        alert('No response from the server. Please check your backend server.');
+      } else {
+        alert(`Error: ${error.message}`);
+      }
+    }
   };
 
   const handleChange = (prop) => (event) => {
@@ -116,8 +133,6 @@ function Signup() {
     return form.email && form.fullName && form.username && form.password &&
       !errors.email && !errors.fullName && !errors.username && !errors.password;
   };
-
-  const navigate = useNavigate();
 
   const handleSignInClick = () => {
     navigate('/signin');
