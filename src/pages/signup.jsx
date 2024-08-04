@@ -71,7 +71,7 @@ function Signup() {
         if (error.response.status === 400) {
           alert('User already exists. Please try logging in.');
         } else {
-          alert(`Error: ${error.response.data.message || 'An error occurred. Please try again.'}`);
+          alert(`Error: ${error.response.data.message}` || 'An error occurred. Please try again.');
         }
       } else if (error.request) {
         alert('No response from the server. Please check your backend server.');

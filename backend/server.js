@@ -3,10 +3,12 @@ const connectDB = require('./config/db');
 const userRoutes = require('./routes/userRoutes'); // Import routes correctly
 require('dotenv').config();
 const cors = require('cors');
+const bodyParser = require("body-parser");
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 
+app.use(bodyParser.json());
 // CORS configuration
 app.use(cors({
   origin: 'http://localhost:3000', // Update to match your frontend's URL
