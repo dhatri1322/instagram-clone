@@ -4,17 +4,21 @@ import SignUp from './pages/signup';
 import SignIn from './pages/signin';
 import Birthday from './pages/bday';
 import Home from './pages/Home'; 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/birthday" element={<Birthday />} />
+        <Route path="/bday" element={<Birthday />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/" element={<SignIn />} />
       </Routes>
+      {/* ToastContainer should be placed at the root level */}
+      <ToastContainer />
     </Router>
   );
 }

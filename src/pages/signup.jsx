@@ -14,7 +14,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import { styled } from '@mui/material/styles';
-import axios from 'axios'; // Import Axios
+import useSignup from '../hooks/useSignup'; // Import the backend logic
 
 const StyledTextField = styled(TextField)(({ theme }) => ({
   '& .MuiInputBase-root': {
@@ -57,29 +57,8 @@ function Signup() {
     password: '',
   });
 
-  const navigate = useNavigate(); // Only declare here
-
-  const handleSignup = async () => {
-    try {
-      await axios.post('http://localhost:8080/api/users/signup', form);
-      // Show success popup or message
-      alert('Account created successfully!');
-      navigate('/birthday'); // Navigate to the birthday page after successful signup
-    } catch (error) {
-      console.error('Signup error:', error);
-      if (error.response) {
-        if (error.response.status === 400) {
-          alert('User already exists. Please try logging in.');
-        } else {
-          alert(`Error: ${error.response.data.message}` || 'An error occurred. Please try again.');
-        }
-      } else if (error.request) {
-        alert('No response from the server. Please check your backend server.');
-      } else {
-        alert(`Error: ${error.message}`);
-      }
-    }
-  };
+  const navigate = useNavigate(); 
+  const { signup, isLoading } = useSignup();
 
   const handleChange = (prop) => (event) => {
     const value = event.target.value;
@@ -96,6 +75,7 @@ function Signup() {
           setErrors({ ...errors, email: '' });
         }
         break;
+
       case 'fullName':
         const nameRegex = /^[a-zA-Z\s]+$/;
         if (!nameRegex.test(value)) {
@@ -104,6 +84,7 @@ function Signup() {
           setErrors({ ...errors, fullName: '' });
         }
         break;
+
       case 'username':
         const usernameRegex = /^[a-zA-Z0-9_.-]+$/;
         if (!usernameRegex.test(value)) {
@@ -112,6 +93,7 @@ function Signup() {
           setErrors({ ...errors, username: '' });
         }
         break;
+
       case 'password':
         const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
         if (!passwordRegex.test(value)) {
@@ -120,6 +102,7 @@ function Signup() {
           setErrors({ ...errors, password: '' });
         }
         break;
+
       default:
         break;
     }
@@ -136,7 +119,13 @@ function Signup() {
 
   const handleSignInClick = () => {
     navigate('/signin');
-  }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(form, navigate, setErrors);
+  };
+
   return (
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Box
@@ -295,21 +284,21 @@ function Signup() {
           <Button
             variant="contained"
             color="primary"
-            onClick={handleSignup}
+            onClick={handleSubmit}
             sx={{
-                bgcolor: isFormValid() ? 'rgb(0, 149, 246)' : '#75b6ff',
-                color: 'white',
-                width: '94%',
-                mt: 1.3,
-                mb: 0.5,
-                textTransform: 'none',
-                fontSize: '0.875rem',
-                borderRadius: 1.5,
-                boxShadow: 'none',
-              }}
-            disabled={!isFormValid()}
+              bgcolor: isFormValid() ? 'rgb(0, 149, 246)' : '#75b6ff',
+              color: 'white',
+              width: '94%',
+              mt: 1.3,
+              mb: 0.5,
+              textTransform: 'none',
+              fontSize: '0.875rem',
+              borderRadius: 1.5,
+              boxShadow: 'none',
+            }}
+            disabled={!isFormValid() || isLoading}
           >
-            Sign Up
+            {isLoading ? 'Signing Up...' : 'Sign Up'}
           </Button>
         </Box>
         <Box
@@ -323,7 +312,7 @@ function Signup() {
           height={33}
           sx={{ bgcolor: 'white', border: '1px solid #dbdbdb' }}
         >
-        <Typography variant="body2" sx={{ fontSize: '0.875rem' }}>
+          <Typography variant="body2" sx={{ fontSize: '0.875rem' }}>
             Have an account?{' '}
             <Link href="#" onClick={handleSignInClick} sx={{ fontSize: '0.875rem' }}>
               Log in
@@ -346,21 +335,21 @@ function Signup() {
             Get the app
           </Typography>
           <Box display="flex" justifyContent="center" mt={1}>
-          <Link href="https://www.microsoft.com/store/apps" sx={{ mr: 1 }}>
-            <img
-              src="/assets/images/Get_it_from_microsoft.png"
-              alt="Get it from Microsoft"
-              style={{ width: 'auto', height: 43.5 }}
-            />
-          </Link>
-          <Link href="https://play.google.com/store/apps" sx={{ ml: 1 }}>
-            <img
-              src="/assets/images/Get_it_from_google_play.png"
-              alt="Get it from Google Play"
-              style={{ width: 'auto', height: 43.5 }}
-            />
-          </Link>
-        </Box>
+            <Link href="https://www.microsoft.com/store/apps" sx={{ mr: 1 }}>
+              <img
+                src="/assets/images/Get_it_from_microsoft.png"
+                alt="Get it from Microsoft"
+                style={{ width: 'auto', height: 43.5 }}
+              />
+            </Link>
+            <Link href="https://play.google.com/store/apps" sx={{ ml: 1 }}>
+              <img
+                src="/assets/images/Get_it_from_google_play.png"
+                alt="Get it from Google Play"
+                style={{ width: 'auto', height: 43.5 }}
+              />
+            </Link>
+          </Box>
         </Box>
       </Box>
       <Footer />
