@@ -3,7 +3,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 //-------------------------------------SIGN UP ROUTE-------------------------------------//
-
 exports.signup = async (req, res) => {
   try {
     const { email, mobileNumber, fullName, username, password } = req.body;
@@ -13,7 +12,7 @@ exports.signup = async (req, res) => {
       return res.status(400).json({ message: 'User with this email or mobile number already exists.' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);       //HASING THE PASSWORD
+    const hashedPassword = await bcrypt.hash(password, 10);       //HASHING THE PASSWORD
 
     const newUser = new User({
       email,
@@ -33,7 +32,6 @@ exports.signup = async (req, res) => {
 };
 
 //-------------------------------------SIGN IN ROUTE-------------------------------------//
-
 exports.signin = async (req, res) => {
   const { email, password } = req.body;
 
@@ -44,7 +42,7 @@ exports.signin = async (req, res) => {
       return res.status(400).json({ message: 'Invalid email or password' });
     }
 
-    // Verify password (assuming you have a method for this)
+    // Verify password
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: 'Invalid email or password' });
@@ -77,15 +75,19 @@ exports.getUserById = async (req, res) => {
 //--------------------------------- Update user's birthday------------------------------------------
 exports.updateUserBirthday = async (req, res) => {
   try {
-    const { birthday } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
+    const { email, mobileNumber, birthday } = req.body;
+
+    // Find user by email or mobile number
+    const user = await User.findOneAndUpdate(
+      { $or: [{ email }, { mobileNumber }] },
       { birthday },
       { new: true }
     );
+
     if (!user) {
       return res.status(404).json({ message: 'User not found.' });
     }
+
     res.status(200).json({ message: 'Birthday updated successfully!' });
   } catch (error) {
     console.error('Update user birthday error:', error); 

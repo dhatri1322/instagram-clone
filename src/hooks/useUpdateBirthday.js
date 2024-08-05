@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const useUpdateBirthday = () => {
   const [error, setError] = useState(null);
@@ -18,12 +19,13 @@ const useUpdateBirthday = () => {
       });
 
       // If the request is successful, navigate to the home page
+      toast.success('birthday added successfully!');
       navigate('/home');
     } catch (error) {
       console.error('Update birthday error:', error);
 
       if (error.response) {
-        alert(`Error: ${error.response.data.message || 'An error occurred. Please try again.'}`);
+        alert(`Error: ${error.response.data.message}` || 'An error occurred. Please try again.');
       } else if (error.request) {
         alert('No response from the server. Please check your backend server.');
       } else {

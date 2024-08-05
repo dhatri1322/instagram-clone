@@ -11,7 +11,7 @@ router.post('/signin', userController.signin);
 // Get user by ID
 router.get('/user/:id', userController.getUserById);
 
-// Update user's birthday
-router.put('/user/:id/birthday', userController.updateUserBirthday);
+// Update user's birthday by email or phone number
+router.put('/user/updateBirthday', userController.updateUserBirthday);
 
 module.exports = router;
