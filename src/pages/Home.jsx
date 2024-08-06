@@ -1,6 +1,6 @@
 import React from 'react';
-import Story from './story';
-import PostList from './PostList';
+import Story from '../components/Story';
+import PostList from '../components/PostList';
 import Footer from '../components/footer';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
 import {
