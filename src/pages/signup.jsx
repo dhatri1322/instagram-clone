@@ -162,7 +162,7 @@ function Signup() {
           >
             Sign up to see photos and videos <br /> from your friends.
           </Typography>
-          <Button
+          {/* <Button
             variant="contained"
             color="primary"
             startIcon={<FacebookIcon />}
@@ -185,7 +185,7 @@ function Signup() {
             >
               Log in with Facebook
             </Typography>
-          </Button>
+          </Button> */}
           <Divider sx={{ width: '100%', my: 1 }}>
             <Typography
               variant="body1"

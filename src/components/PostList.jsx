@@ -36,16 +36,28 @@ const PostList = () => {
   return (
     <div>
       <Post 
-        username="JohnDoe" 
-        imageUrl="https://via.placeholder.com/400" 
-        caption="This is the first post" 
-        imageHeight="400"
+        username="IndiaNews" 
+        imageUrl="/assets/images/gate.jpg" 
+        caption="India Gate, located in New Delhi, is a 42-meter-high war memorial designed by Sir Edwin Lutyens, commemorating Indian soldiers who died in World War I and the Third Anglo-Afghan War. It was inaugurated in 1931 and is made of red and pale sandstone." 
+        imageHeight="800"
       />
       <Post 
         username="JaneSmith" 
-        imageUrl="https://via.placeholder.com/300" 
-        caption="This is the second post" 
-        imageHeight="300"
+        imageUrl="assets/images/ai.jpg" 
+        caption="Artificial Intelligence (AI) enables machines to perform tasks requiring human intelligence, like problem-solving and learning. Key subfields include machine learning and natural language processing." 
+        imageHeight="450"
+      />
+      <Post 
+        username="StreetFood12" 
+        imageUrl="assets/images/samosa.jpg" 
+        caption="Samosa is a popular South Asian snack, typically consisting of a crispy, triangular pastry filled with spiced potatoes, peas, and sometimes meat. It's usually deep-fried and enjoyed with chutneys." 
+        imageHeight="600"
+      />
+      <Post 
+        username="Dhatri13" 
+        imageUrl="assets/images/flower.jpeg" 
+        caption="Bloom where you are planted.🌸" 
+        imageHeight="800"
       />
     </div>
   );
