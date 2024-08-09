@@ -4,8 +4,6 @@ import MenuItem from "@mui/material/MenuItem";
 import Paper from "@mui/material/Paper";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Typography from "@mui/material/Typography";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import BookmarkBorderOutlinedIcon from "@mui/icons-material/BookmarkBorderOutlined";
@@ -14,11 +12,14 @@ import AnnouncementOutlinedIcon from "@mui/icons-material/AnnouncementOutlined";
 import { Divider, Modal } from "@mui/material";
 
 export default function TypographyMenu({ isMoreOpen, setIsMoreOpen }) {
+  const [isSettingsOpen, setIsSettingsOpen] = React.useState(false);
+
   return (
     <Modal
       open={isMoreOpen}
       onClose={() => {
         setIsMoreOpen(false);
+        setIsSettingsOpen(false); // Close settings menu when main menu is closed
       }}
       BackdropProps={{
         style: {
@@ -33,6 +34,7 @@ export default function TypographyMenu({ isMoreOpen, setIsMoreOpen }) {
           left: "2rem",
           width: "17rem",
           height: "auto",
+          borderRadius:"15px",
           zIndex: 2000,
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.5)",
           color: "#000",
@@ -40,12 +42,44 @@ export default function TypographyMenu({ isMoreOpen, setIsMoreOpen }) {
         }}
       >
         <MenuList>
-          <MenuItem>
+          <MenuItem
+            onClick={() => setIsSettingsOpen(!isSettingsOpen)}
+          >
             <ListItemIcon>
               <SettingsOutlinedIcon fontSize="small" sx={{ color: "#000" }} />
             </ListItemIcon>
             <Typography variant="inherit">Setting</Typography>
           </MenuItem>
+
+          {isSettingsOpen && (
+            <Paper
+              style={{
+                position: "absolute",
+                top: "0",
+                left: "100%",
+                width: "15rem",
+                borderRadius: "15px",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.5)",
+                marginLeft: "10px",
+              }}
+            >
+              <MenuList>
+                <MenuItem>
+                  <Typography variant="inherit" style={{ fontWeight: 'bold' }}>
+                    Setting
+                  </Typography>
+                </MenuItem>
+                <MenuItem>Edit profile</MenuItem>
+                <MenuItem>Notification</MenuItem>
+                <MenuItem>Hide Story</MenuItem>
+                <MenuItem>Live</MenuItem>
+                <MenuItem>Blocked</MenuItem>
+                <MenuItem>Privacy center</MenuItem>
+                <MenuItem>Help</MenuItem>
+              </MenuList>
+            </Paper>
+          )}
+
           <MenuItem>
             <ListItemIcon>
               <AssignmentOutlinedIcon fontSize="small" sx={{ color: "#000" }} />
