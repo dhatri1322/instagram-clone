@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/birthday" element={<Birthday />} />
+        <Route path="/bday" element={<Birthday />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/home" element={<Home />} /> 
         <Route path="/" element={<SignIn />} />
