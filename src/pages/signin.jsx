@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import axios from 'axios';
-import { Box, Typography, TextField, Button, Divider, Link, styled } from '@mui/material';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import { Box, Typography, TextField, Button, /* Divider ,*/ Link, styled } from '@mui/material';
+/* import FacebookIcon from '@mui/icons-material/Facebook'; */
 import Footer from '../components/footer';
 import Bg from '../iphone_with_profile.png';
 import { useNavigate } from 'react-router-dom';
@@ -232,7 +232,7 @@ function SignIn() {
                 >
                   Sign in
                 </Button>
-                <Divider sx={{ my: 1 }}>
+                {/* <Divider sx={{ my: 1 }}>
                   <Typography
                     variant="body1"
                     sx={{
@@ -244,7 +244,7 @@ function SignIn() {
                   >
                     OR
                   </Typography>
-                </Divider>
+                </Divider> */}
                 {/* <Button
                   variant="contained"
                   color="primary"

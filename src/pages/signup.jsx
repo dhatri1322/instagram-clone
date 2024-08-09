@@ -4,11 +4,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Divider from '@mui/material/Divider';
+/* import Divider from '@mui/material/Divider'; */
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Footer from '../components/footer'; // Ensure correct casing
-import FacebookIcon from '@mui/icons-material/Facebook';
+/* import FacebookIcon from '@mui/icons-material/Facebook'; */
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import IconButton from '@mui/material/IconButton';
@@ -186,7 +186,7 @@ function Signup() {
               Log in with Facebook
             </Typography>
           </Button> */}
-          <Divider sx={{ width: '100%', my: 1 }}>
+{/*           <Divider sx={{ width: '100%', my: 1 }}>
             <Typography
               variant="body1"
               gutterBottom
@@ -201,7 +201,7 @@ function Signup() {
             >
               OR
             </Typography>
-          </Divider>
+          </Divider> */}
           <Stack spacing={0.6} width="100%" alignItems="center">
             <StyledTextField
               variant="outlined"
