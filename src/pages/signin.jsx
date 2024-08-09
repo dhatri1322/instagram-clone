@@ -245,7 +245,7 @@ function SignIn() {
                     OR
                   </Typography>
                 </Divider>
-                <Button
+                {/* <Button
                   variant="contained"
                   color="primary"
                   startIcon={<FacebookIcon />}
@@ -261,7 +261,7 @@ function SignIn() {
                   }}
                 >
                   Log in with Facebook
-                </Button>
+                </Button> */}
                 <Typography
                   variant="body2"
                   sx={{

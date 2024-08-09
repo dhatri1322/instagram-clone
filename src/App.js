@@ -5,6 +5,7 @@ import SignIn from './pages/signin';
 import Birthday from './pages/bday';
 import Home from './pages/Home'; 
 import Story from './components/Story';
+import Profile from './pages/profile';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/home" element={<Home />} /> 
         <Route path="/" element={<SignIn />} />
         <Route path="/story" element={<Story/>}/>
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
     </Router>
   );

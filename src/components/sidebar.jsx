@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Story from "../components/Story";
-import PostList from "../components/PostList";
 import Footer from "../components/footer";
 import CustumMore from "../components/more";
 import CustumCreate from "../components/create";
 import CustumNotification from "../components/notification";
 import MenuIcon from '@mui/icons-material/Menu';
 import Search from '../components/search';
+// import ProfileDashboard from './profile';
 import {
   Drawer,
   List,
@@ -159,17 +158,7 @@ const Sidebar = () => {
           setIsSearchOpen={setIsSearchOpen}
         />
       )}
-
-
-
-      <div>
-        <Story />
-      </div>
-
-      <div>
-        <PostList />
-      </div>
-
+      
       <div>
         <Footer />
       </div>

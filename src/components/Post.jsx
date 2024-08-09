@@ -5,7 +5,8 @@ import { Favorite, Share, MoreVert } from '@mui/icons-material';
 const Post = ({ username, imageUrl, caption }) => {
   return (
     <Card>
-      <CardHeader
+      <CardHeader 
+      
         avatar={<Avatar>{username.charAt(0)}</Avatar>}
         action={
           <IconButton>
